@@ -352,6 +352,13 @@ yarn dev
 
 **Note:** The development URL (http://localhost:5678) is automatically added to allowed domains in development mode. You don't need to add it manually.
 
+## ARIA Implementation
+- Das Projekt wurde um umfassende ARIA‑Definitionen erweitert, die die Zugänglichkeit der Chatbot-Komponenten verbessern. Dazu gehören:
+  - `role="button"` und `aria-label` für das Chatfenster‑Icon
+  - `role="dialog"` sowie `aria-modal="true"` für das Popup-Fenster
+  - `aria-live="polite"` zur Benachrichtigung von Screenreadern über neue Nachrichten
+  - Weitere ARIA‑Attribute wurden in den jeweiligen React‑Komponenten eingebettet, um Konformität mit WCAG 2.1 zu gewährleisten.
+  
 ## License
-
 Source code in this repository is made available under the [MIT License](https://github.com/FlowiseAI/Flowise/blob/master/LICENSE.md).
+

@@ -142,6 +142,8 @@ export const TextInput = (props: TextInputProps) => {
     <div
       class="w-full h-auto max-h-[192px] min-h-[56px] flex flex-col items-end justify-between chatbot-input border border-[#eeeeee]"
       data-testid="input"
+      role="form"
+      aria-label={props['aria-label'] ?? 'Chat input'}
       style={{
         margin: 'auto',
         'background-color': props.backgroundColor ?? defaultBackgroundColor,
@@ -172,6 +174,7 @@ export const TextInput = (props: TextInputProps) => {
               ref={imgUploadRef as HTMLInputElement}
               type="file"
               onChange={handleFileChange}
+              aria-hidden="true"
               accept={
                 props.uploadsConfig?.imgUploadSizeAndTypes?.length
                   ? props.uploadsConfig?.imgUploadSizeAndTypes.map((allowed) => allowed.fileTypes).join(',')
@@ -197,6 +200,7 @@ export const TextInput = (props: TextInputProps) => {
               ref={fileUploadRef as HTMLInputElement}
               type="file"
               onChange={handleFileChange}
+              aria-hidden="true"
               accept={getFileType()}
             />
           </>

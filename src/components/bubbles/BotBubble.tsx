@@ -448,11 +448,12 @@ export const BotBubble = (props: Props) => {
               </For>
             </div>
           )}
-          {props.message.message && (
-            <span
-              ref={setBotMessageRef}
-              class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
-              data-testid="host-bubble"
+           {props.message.message && (
+             <span
+               ref={setBotMessageRef}
+               class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
+               data-testid="host-bubble"
+               role="article"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,
                 color: props.textColor ?? defaultTextColor,
@@ -462,7 +463,7 @@ export const BotBubble = (props: Props) => {
             />
           )}
           {props.message.action && (
-            <div class="px-4 py-2 flex flex-row justify-start space-x-2">
+            <div class="px-4 py-2 flex flex-row justify-start space-x-2" role="group" aria-label="Message actions">
               <For each={props.message.action.elements || []}>
                 {(action) => {
                   return (
@@ -471,6 +472,7 @@ export const BotBubble = (props: Props) => {
                         <button
                           type="button"
                           class="px-4 py-2 font-medium text-green-600 border border-green-600 rounded-full hover:bg-green-600 hover:text-white transition-colors duration-300 flex items-center space-x-2"
+                          aria-label={`Approve: ${action.label}`}
                           onClick={() => props.handleActionClick(action, props.message.action)}
                         >
                           <TickIcon />
@@ -481,6 +483,7 @@ export const BotBubble = (props: Props) => {
                         <button
                           type="button"
                           class="px-4 py-2 font-medium text-red-600 border border-red-600 rounded-full hover:bg-red-600 hover:text-white transition-colors duration-300 flex items-center space-x-2"
+                          aria-label={`Reject: ${action.label}`}
                           onClick={() => props.handleActionClick(action, props.message.action)}
                         >
                           <XIcon isCurrentColor={true} />
@@ -502,9 +505,9 @@ export const BotBubble = (props: Props) => {
         {props.message.sourceDocuments && props.message.sourceDocuments.length && (
           <>
             <Show when={props.sourceDocsTitle}>
-              <span class="px-2 py-[10px] font-semibold">{props.sourceDocsTitle}</span>
+              <span class="px-2 py-[10px] font-semibold" role="heading" aria-level="2">{props.sourceDocsTitle}</span>
             </Show>
-            <div style={{ display: 'flex', 'flex-direction': 'row', width: '100%', 'flex-wrap': 'wrap' }}>
+            <div style={{ display: 'flex', 'flex-direction': 'row', width: '100%', 'flex-wrap': 'wrap' }} role="list" aria-label="Source documents">
               <For each={[...removeDuplicateURL(props.message)]}>
                 {(src) => {
                   const URL = isValidURL(src.metadata.source);
@@ -527,8 +530,8 @@ export const BotBubble = (props: Props) => {
           </>
         )}
       </div>
-      <div>
-        <div class={`flex items-center px-2 pb-2 ${props.showAvatar ? 'ml-10' : ''}`}>
+      <div role="complementary" aria-label="Message feedback">
+        <div class={`flex items-center px-2 pb-2 ${props.showAvatar ? 'ml-10' : ''}`} role="toolbar" aria-label="Message actions">
           <Show when={props.isTTSEnabled && (props.message.id || props.message.messageId)}>
             <TTSButton
               feedbackColor={props.feedbackColor}

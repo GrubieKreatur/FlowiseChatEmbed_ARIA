@@ -10,10 +10,13 @@ type FileUploadButtonProps = {
 } & JSX.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const AttachmentUploadButton = (props: FileUploadButtonProps) => {
+  const ariaLabel = (props as any)['aria-label'] ?? 'Attach file';
+
   return (
     <button
       type="submit"
       disabled={props.isDisabled || props.isLoading}
+      aria-label={ariaLabel}
       {...props}
       class={
         'py-2 pl-4 pr-0 justify-center font-semibold focus:outline-none flex items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 transition-all filter hover:brightness-90 active:brightness-75 chatbot-button ' +
@@ -21,7 +24,7 @@ export const AttachmentUploadButton = (props: FileUploadButtonProps) => {
       }
       style={{ background: 'transparent', border: 'none' }}
     >
-      <Show when={!props.isLoading} fallback={<Spinner class="text-white" />}>
+      <Show when={!props.isLoading} fallback={<Spinner class="text-white" aria-label="loading" />}>
         <AttachmentIcon color={props.buttonColor} />
       </Show>
     </button>
@@ -31,12 +34,15 @@ export const AttachmentUploadButton = (props: FileUploadButtonProps) => {
 export const Spinner = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
   <svg
     {...props}
+    role="status"
+    aria-live="polite"
     class={'animate-spin -ml-1 mr-3 h-5 w-5 ' + props.class}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     data-testid="loading-spinner"
   >
+    <title>Loading</title>
     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
     <path
       class="opacity-75"

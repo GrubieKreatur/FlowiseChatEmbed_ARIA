@@ -30,7 +30,12 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
 
   return (
     <>
-      <div class="flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[1002] outline-none focus:outline-none justify-center items-center">
+      <div
+        class="flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[1002] outline-none focus:outline-none justify-center items-center"
+        role="dialog"
+        aria-modal="true"
+        aria-label={props['aria-label'] ?? 'Feedback dialog'}
+      >
         <div class="relative w-full my-6 max-w-3xl mx-4">
           <div
             class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
@@ -50,6 +55,7 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
                 class="p-1 ml-auto bg-transparent border-0 text-black float-right text-xl leading-none font-semibold outline-none focus:outline-none"
                 type="button"
                 onClick={onClose}
+                aria-label="Close feedback dialog"
               >
                 <span class="bg-transparent block outline-none focus:outline-none">
                   <svg
@@ -74,6 +80,7 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
               <textarea
                 onInput={(e) => handleInput(e.currentTarget.value)}
                 ref={inputRef as HTMLTextAreaElement}
+                  aria-label="Feedback content"
                 rows="4"
                 class="block p-2.5 rounded-lg border focus:ring-blue-500 focus:border-blue-500 bg-transparent flex-1 w-full feedback-input disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 font-normal"
                 style={{
@@ -88,7 +95,8 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
               <button
                 class="bg-emerald-500 text-white active:bg-emerald-600 font-bold text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                onClick={submit}
+                  onClick={submit}
+                  aria-label="Submit feedback"
               >
                 Submit Feedback
               </button>

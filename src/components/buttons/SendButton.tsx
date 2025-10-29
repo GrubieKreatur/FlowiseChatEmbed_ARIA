@@ -10,10 +10,13 @@ type SendButtonProps = {
 } & JSX.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const SendButton = (props: SendButtonProps) => {
+  const ariaLabel = (props as any)['aria-label'] ?? 'Send message';
+
   return (
     <button
       type="submit"
       disabled={props.isDisabled || props.isLoading}
+      aria-label={ariaLabel}
       {...props}
       class={
         'py-2 px-4 justify-center font-semibold text-white focus:outline-none flex items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 transition-all filter hover:brightness-90 active:brightness-75 chatbot-button ' +
@@ -21,7 +24,7 @@ export const SendButton = (props: SendButtonProps) => {
       }
       style={{ background: 'transparent', border: 'none' }}
     >
-      <Show when={!props.isLoading} fallback={<Spinner class="text-white" />}>
+      <Show when={!props.isLoading} fallback={<Spinner class="text-white" aria-label="loading" />}>
         <SendIcon color={props.sendButtonColor} class={'send-icon flex ' + (props.disableIcon ? 'hidden' : '')} />
       </Show>
     </button>
@@ -32,10 +35,13 @@ export const DeleteButton = (props: SendButtonProps) => {
   const isFullChatbot = document.querySelector('flowise-fullchatbot') !== null;
   const paddingClass = isFullChatbot ? 'px-4' : 'px-12';
 
+  const ariaLabel = (props as any)['aria-label'] ?? 'Reset chat';
+
   return (
     <button
       type="submit"
       disabled={props.isDisabled || props.isLoading}
+      aria-label={ariaLabel}
       {...props}
       class={
         `py-2 ${paddingClass} justify-center font-semibold text-white focus:outline-none flex items-center disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 transition-all filter hover:brightness-90 active:brightness-75 chatbot-button ` +
@@ -44,7 +50,7 @@ export const DeleteButton = (props: SendButtonProps) => {
       style={{ background: 'transparent', border: 'none' }}
       title="Reset Chat"
     >
-      <Show when={!props.isLoading} fallback={<Spinner class="text-white" />}>
+      <Show when={!props.isLoading} fallback={<Spinner class="text-white" aria-label="loading" />}>
         <DeleteIcon color={props.sendButtonColor} class={'send-icon flex ' + (props.disableIcon ? 'hidden' : '')} />
       </Show>
     </button>
@@ -54,12 +60,15 @@ export const DeleteButton = (props: SendButtonProps) => {
 export const Spinner = (props: JSX.SvgSVGAttributes<SVGSVGElement>) => (
   <svg
     {...props}
+    role="status"
+    aria-live="polite"
     class={'animate-spin -ml-1 mr-3 h-5 w-5 ' + props.class}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     data-testid="loading-spinner"
   >
+    <title>Loading</title>
     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
     <path
       class="opacity-75"
