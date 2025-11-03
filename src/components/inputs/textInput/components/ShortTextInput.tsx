@@ -14,7 +14,7 @@ export const ShortTextInput = (props: ShortTextInputProps) => {
   const [local, others] = splitProps(props, ['ref', 'onInput']);
   const [height, setHeight] = createSignal(56);
 
-  const ariaLabel = (props as any)['aria-label'] ?? (props.placeholder ?? 'Message input');
+  const ariaLabel = (props as any)['aria-label'] ?? props.placeholder ?? 'Message input';
 
   // @ts-expect-error: unknown type
   const handleInput = (e) => {

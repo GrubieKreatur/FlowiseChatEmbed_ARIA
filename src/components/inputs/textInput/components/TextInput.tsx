@@ -31,6 +31,7 @@ type TextInputProps = {
   fullFileUploadAllowedTypes?: string;
   enableInputHistory?: boolean;
   maxHistorySize?: number;
+  'aria-label'?: string;
 };
 
 const defaultBackgroundColor = '#ffffff';

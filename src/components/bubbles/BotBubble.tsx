@@ -448,12 +448,12 @@ export const BotBubble = (props: Props) => {
               </For>
             </div>
           )}
-           {props.message.message && (
-             <span
-               ref={setBotMessageRef}
-               class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
-               data-testid="host-bubble"
-               role="article"
+          {props.message.message && (
+            <span
+              ref={setBotMessageRef}
+              class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
+              data-testid="host-bubble"
+              role="article"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,
                 color: props.textColor ?? defaultTextColor,
@@ -505,7 +505,9 @@ export const BotBubble = (props: Props) => {
         {props.message.sourceDocuments && props.message.sourceDocuments.length && (
           <>
             <Show when={props.sourceDocsTitle}>
-              <span class="px-2 py-[10px] font-semibold" role="heading" aria-level="2">{props.sourceDocsTitle}</span>
+              <span class="px-2 py-[10px] font-semibold" role="heading" aria-level="2">
+                {props.sourceDocsTitle}
+              </span>
             </Show>
             <div style={{ display: 'flex', 'flex-direction': 'row', width: '100%', 'flex-wrap': 'wrap' }} role="list" aria-label="Source documents">
               <For each={[...removeDuplicateURL(props.message)]}>

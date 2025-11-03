@@ -6,6 +6,7 @@ type FeedbackContentDialogProps = {
   onSubmit: (text: string) => void;
   backgroundColor?: string;
   textColor?: string;
+  'aria-label'?: string;
 };
 
 const defaultBackgroundColor = '#ffffff';
@@ -80,7 +81,7 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
               <textarea
                 onInput={(e) => handleInput(e.currentTarget.value)}
                 ref={inputRef as HTMLTextAreaElement}
-                  aria-label="Feedback content"
+                aria-label="Feedback content"
                 rows="4"
                 class="block p-2.5 rounded-lg border focus:ring-blue-500 focus:border-blue-500 bg-transparent flex-1 w-full feedback-input disabled:opacity-50 disabled:cursor-not-allowed disabled:brightness-100 font-normal"
                 style={{
@@ -95,8 +96,8 @@ const FeedbackContentDialog = (props: FeedbackContentDialogProps) => {
               <button
                 class="bg-emerald-500 text-white active:bg-emerald-600 font-bold text-sm px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                 type="button"
-                  onClick={submit}
-                  aria-label="Submit feedback"
+                onClick={submit}
+                aria-label="Submit feedback"
               >
                 Submit Feedback
               </button>
