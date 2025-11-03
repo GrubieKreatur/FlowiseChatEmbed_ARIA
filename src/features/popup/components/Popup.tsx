@@ -7,6 +7,7 @@ export type PopupProps = {
   isOpen?: boolean;
   onOpen?: () => void;
   onClose?: () => void;
+  'aria-label'?: string;
 };
 
 function syntaxHighlight(json: any) {
