@@ -454,6 +454,9 @@ export const BotBubble = (props: Props) => {
               class="px-4 py-2 ml-2 max-w-full chatbot-host-bubble prose"
               data-testid="host-bubble"
               role="article"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-relevant="all"
               style={{
                 'background-color': props.backgroundColor ?? defaultBackgroundColor,
                 color: props.textColor ?? defaultTextColor,
